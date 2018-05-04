@@ -8,7 +8,7 @@ create function dbo.mElsQuedo( @nJugador  int, @punts  int )
 returns bit
 as begin 
 	declare @meloquedo as bit 
-	if @punts >=3 
+	if @punts >=2
 		set @meloquedo = 1
 	else 
 		set @meloquedo =0
