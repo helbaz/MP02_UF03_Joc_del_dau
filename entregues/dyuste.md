@@ -11,8 +11,8 @@ returns bit
 as begin
 
 	declare @melosquedo as bit, @yo as int, @el as int;
-	set @yo=coalesce((select sum(puntsAnotats) from marcador where nJugadorAnota=@jugador),0)
-	set @el=coalesce((select sum(puntsAnotats) from marcador where nJugadorAnota!=@jugador),0)
+	set @yo=coalesce((select sum(puntsAnotats) from marcador where nJugadorAnota=@jugador),0);
+	set @el=coalesce((select sum(puntsAnotats) from marcador where nJugadorAnota!=@jugador),0);
 	
 	if @punts>=3
 		begin
