@@ -4,15 +4,37 @@
 Agafarem el dau sempre que sigui 3 o més gran.
 
 ```
-create function dbo.mElsQuedo( @nJugador  int, @punts  int ) 
+
+
+alter function melsquedo(@jugador as int, @punts as int)
 returns bit
-as begin 
-	declare @meloquedo as bit 
-	if @punts >=3 
-		set @meloquedo = 1
-	else 
-		set @meloquedo =0
-	return @meloquedo
+as begin
+
+	declare @melosquedo as bit, @yo as int, @el as int;
+	set @yo=coalesce((select sum(puntsAnotats) from marcador where nJugadorAnota=@jugador),0);
+	set @el=coalesce((select sum(puntsAnotats) from marcador where nJugadorAnota!=@jugador),0);
+	
+	if @punts>=3
+		
+			if @yo>@el
+				set @melosquedo=1;
+			else 
+				set  @melosquedo=1;
+		
+	else if @punts < =2
+		
+			if @yo<@el
+				set @melosquedo=1;
+			else 
+				set @melosquedo=0;
+			
+	return @melosquedo
 end
+
+
+
+
+
+
 
 ```
