@@ -15,17 +15,23 @@ as begin
 	set @el=(select sum(puntsAnotats) from marcador where nJugadorAnota!=@jugador)
 	
 	if @punts>=3
-		if @yo>@el
-			set @melosquedo=1;
-		else	 
-			set @melosquedo=1;
+		begin
+			if @yo>@el
+				set @melosquedo=1;
+			else 
+				set  @melosquedo=1;
+		end
 	else if @punts < =2
-		if @yo<@el
-			set @melosquedo=1;
-		else
-			set @melosquedo=0;
+		begin
+			if @yo<@el
+				set @melosquedo=1;
+			else 
+				set @melosquedo=0;
+		end
 	return @melosquedo
 end
+
+
 
 
 
