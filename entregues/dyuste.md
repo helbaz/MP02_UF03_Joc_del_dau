@@ -22,9 +22,9 @@ as begin
 	else if @punts < =2
 
 		if @yo<@el
-		set @melosquedo=1;
+			set @melosquedo=1;
 		else
-		set @melosqueda=0;
+			set @melosquedo=0;
 
 	return @melosquedo
 end
