@@ -8,12 +8,12 @@ CREATE FUNCTION dbo.Mels_quedo
 RETURNS bit
 AS BEGIN
 	DECLARE @Meus as bit, @Total as int, @Totalrival as int
-	SET @Total = (SELECT SUM(puntsAnotats)
-			FROM marcador M
-			WHERE M.nJugadorAnota=@N_jugador)
-	SET @Totalrival = (SELECT SUM(puntsAnotats)
-			FROM marcador M
-			WHERE M.nJugadorAnota!=@N_jugador)
+	SET @Total = coalesce((SELECT SUM(puntsAnotats)
+				FROM marcador M
+				WHERE M.nJugadorAnota=@N_jugador),0)
+	SET @Totalrival = coalesce((SELECT SUM(puntsAnotats)
+					FROM marcador M
+					WHERE M.nJugadorAnota!=@N_jugador),0)
 	IF (@Punts>=3)
 		BEGIN
 			SET @Meus =1
