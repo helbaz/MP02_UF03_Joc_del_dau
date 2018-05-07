@@ -20,12 +20,10 @@ as begin
 		else	 
 			set @melosquedo=1;
 	else if @punts < =2
-
 		if @yo<@el
 			set @melosquedo=1;
 		else
 			set @melosquedo=0;
-
 	return @melosquedo
 end
 
