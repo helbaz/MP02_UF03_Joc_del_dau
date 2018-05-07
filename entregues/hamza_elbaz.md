@@ -6,9 +6,9 @@ create function dbo.mElsQuedo (
 @punts as int)
 returns integer
 as begin
-	declare @paraMi int, @misPuntos int, @susPuntos  --Si es para mi será 1 (true), sino será 0 (false)
-	set @misPuntos=sum(puntsAnotats) from Marcador where nJugadorAnota=@n_jugador;
-	set @susPuntos=sum(puntsAnotats) from Marcador where nJugadorAnota!=@n_jugador;
+	declare @paraMi int, @misPuntos int, @susPuntos int  --Si es para mi será 1 (true), sino será 0 (false)
+	set @misPuntos=(select sum(puntsAnotats) from Marcador where nJugadorAnota=@n_jugador);
+	set @susPuntos=(select sum(puntsAnotats) from Marcador where nJugadorAnota!=@n_jugador);
 	if @misPuntos>@susPuntos
 		begin
 			if @misPuntos<@susPuntos+@punts
@@ -17,25 +17,25 @@ as begin
 			end
 			else
 			begin
-				if @puntos>2
+				if @punts>2
 				begin
-					@paraMi=1
+					set @paraMi=1
 				end
 				else
 				begin
-					@paraMi=0
+					set @paraMi=0
 				end
 			end
 		end;
 	else 
 		begin
-			if @puntos>2
+			if @punts>2
 				begin
-					@paraMi=1
+					set @paraMi=1
 				end
 				else
 				begin
-					@paraMi=0
+					set @paraMi=0
 				end
 		end;
 	return @paraMi
