@@ -15,19 +15,19 @@ as begin
 	set @el=coalesce((select sum(puntsAnotats) from marcador where nJugadorAnota!=@jugador),0);
 	
 	if @punts>=3
-		begin
+		
 			if @yo>@el
 				set @melosquedo=1;
 			else 
 				set  @melosquedo=1;
-		end
+		
 	else if @punts < =2
-		begin
+		
 			if @yo<@el
 				set @melosquedo=1;
 			else 
 				set @melosquedo=0;
-			end
+			
 	return @melosquedo
 end
 
